@@ -22,6 +22,14 @@
         }
       ]
     },
+    "comb": {
+      "type": "PATTERN",
+      "value": "zap|i|unit|rep|m|run|dup|k|z|nip|sap|t|dip|cat|swat|swap|cons|take|tack|sip|w|peek|cake|poke|b|c|dig|bury|flip|s|s\\'|j|j\\'|duco|rot"
+    },
+    "prim": {
+      "type": "PATTERN",
+      "value": "int|float|str|opt"
+    },
     "id": {
       "type": "PATTERN",
       "value": "[a-z](-?[A-Za-z0-9_'])*"
@@ -40,7 +48,7 @@
     },
     "symbol": {
       "type": "PATTERN",
-      "value": "[!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+      "value": "[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
     },
     "infix_word": {
       "type": "PATTERN",
@@ -269,6 +277,10 @@
     "ty_val": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "prim"
+        },
         {
           "type": "SYMBOL",
           "name": "cap"
@@ -874,8 +886,11 @@
               "name": "askw"
             },
             {
-              "type": "SYMBOL",
-              "name": "p"
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "p_val"
+              }
             },
             {
               "type": "CHOICE",
@@ -951,15 +966,15 @@
     },
     "letop": {
       "type": "PATTERN",
-      "value": "let[!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+      "value": "let[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
     },
     "andop": {
       "type": "PATTERN",
-      "value": "and[!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+      "value": "and[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
     },
     "asop": {
       "type": "PATTERN",
-      "value": "as[!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+      "value": "as[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
     },
     "let_body": {
       "type": "SEQ",
@@ -1525,6 +1540,10 @@
     "e_val": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "comb"
+        },
         {
           "type": "SYMBOL",
           "name": "int"

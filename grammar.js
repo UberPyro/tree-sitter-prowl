@@ -1,5 +1,5 @@
 const id_tail = "(\-?[A-Za-z0-9_\'])*";
-const sym = "[!@#$%^&*\\-=+\\.?:<>|/\\\\]+";
+const sym = "[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+";
 
 module.exports = grammar({
   name: 'prowl',
@@ -20,6 +20,8 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => seq(optional($.access), $.e),
+    comb: $ => /zap|i|unit|rep|m|run|dup|k|z|nip|sap|t|dip|cat|swat|swap|cons|take|tack|sip|w|peek|cake|poke|b|c|dig|bury|flip|s|s\'|j|j\'|duco|rot/,
+    prim: $ => /int|float|str|opt/,
 
     id: $ => new RegExp("[a-z]" + id_tail), 
     id_reg: $ => new RegExp("[a-z]" + id_tail + "([?+*!]|!!)?"), 
@@ -55,6 +57,7 @@ module.exports = grammar({
     ), 
 
     ty_val: $ => choice(
+      $.prim, 
       $.cap, 
       $.id, 
       seq("[", $.ty, "]"), 
@@ -95,7 +98,7 @@ module.exports = grammar({
 
     bind: $ => choice(
       seq($.letkw, $.let_body, repeat(seq($.andkw, $.let_body)), "->", $.e), 
-      seq($.askw, $.p, optional(seq(":", $.ty)), "->", $.e), 
+      seq($.askw, repeat($.p_val), optional(seq(":", $.ty)), "->", $.e), 
     ), 
 
     letkw: $ => choice("let", $.letop), 
@@ -137,6 +140,8 @@ module.exports = grammar({
     ), 
 
     e_val: $ => choice(
+      $.comb,
+
       $.int, 
       $.float, 
       $.string, 

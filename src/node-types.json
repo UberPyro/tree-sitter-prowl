@@ -63,10 +63,6 @@
           "named": true
         },
         {
-          "type": "p",
-          "named": true
-        },
-        {
           "type": "p_val",
           "named": true
         },
@@ -160,6 +156,10 @@
       "types": [
         {
           "type": "cap",
+          "named": true
+        },
+        {
+          "type": "comb",
           "named": true
         },
         {
@@ -430,6 +430,10 @@
           "named": true
         },
         {
+          "type": "prim",
+          "named": true
+        },
+        {
           "type": "sp",
           "named": true
         },
@@ -613,6 +617,10 @@
     "named": true
   },
   {
+    "type": "comb",
+    "named": true
+  },
+  {
     "type": "comment",
     "named": true
   },
@@ -675,6 +683,10 @@
   {
     "type": "open",
     "named": false
+  },
+  {
+    "type": "prim",
+    "named": true
   },
   {
     "type": "priv",

@@ -1,12 +1,16 @@
 mod
 
-  data [z* -- y*] opt
-    = [z* -- y*] Has
-    ; Nil
+  def rules = #[
+    3 "fizz", 
+    5 "buzz", 
+    7 "bizz", 
+  ]
 
-  data vec2 = {
-    x: -- int, 
-    y: -- int
-  }
+  def fizzbuzz = as~ n -> 
+    rules <?> n rot div
+    ~ !pop n to-str | fold
+  
+  def main = 
+    fizzbuzz "\n" interleave
 
 end
