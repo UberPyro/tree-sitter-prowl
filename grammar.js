@@ -65,12 +65,14 @@ module.exports = grammar({
     ), 
 
     data: $ => choice(
-      sep1(";", seq($.cap, ":", $.ty)), 
-      seq(
-        "{", 
-        sep1(",", seq($.id, optional(seq(":", $.ty)))), 
-        "}"
-      )
+      sep1(";", seq(repeat(choice($.ty_val, $.record)), $.cap)), 
+      $.record
+    ),
+
+    record: $ => seq(
+      "{", 
+      sep1(",", seq($.id, optional(seq(":", $.ty)))), 
+      "}"
     ),
 
     s: $ => choice(
