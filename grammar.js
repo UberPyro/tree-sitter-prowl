@@ -76,7 +76,7 @@ module.exports = grammar({
     s: $ => choice(
       seq(optional($.access), "type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq(optional($.access), "data", repeat($.parameter), $.id, "=", $.data), 
-      seq(optional($.access), optional("impl"), "def", $.p, optional(seq(":", $.ty)), "=", $.e), 
+      seq(optional($.access), optional("impl"), "def", repeat($.p_val), $.id, optional(seq(":", $.ty)), "=", $.e), 
       seq(optional("impl"), "open", $.e), 
       seq("mix", $.e), 
     ), 
@@ -103,7 +103,7 @@ module.exports = grammar({
     andop: $ => new RegExp("and" + sym), 
     asop:  $ => new RegExp("as"  + sym), 
 
-    let_body: $ => seq($.p, optional(seq(":", $.ty)), "=", $.e), 
+    let_body: $ => seq(repeat($.p_val), $.id, optional(seq(":", $.ty)), "=", $.e), 
 
     e_term: $ => choice(
       prec.right(16, seq($.e_term, "**", $.e_term)), 

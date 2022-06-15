@@ -652,8 +652,15 @@
               "value": "def"
             },
             {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "p_val"
+              }
+            },
+            {
               "type": "SYMBOL",
-              "name": "p"
+              "name": "id"
             },
             {
               "type": "CHOICE",
@@ -938,8 +945,15 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "p_val"
+          }
+        },
+        {
           "type": "SYMBOL",
-          "name": "p"
+          "name": "id"
         },
         {
           "type": "CHOICE",

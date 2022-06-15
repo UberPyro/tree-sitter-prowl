@@ -55,11 +55,19 @@
           "named": true
         },
         {
+          "type": "id",
+          "named": true
+        },
+        {
           "type": "letkw",
           "named": true
         },
         {
           "type": "p",
+          "named": true
+        },
+        {
+          "type": "p_val",
           "named": true
         },
         {
@@ -299,7 +307,7 @@
           "named": true
         },
         {
-          "type": "p",
+          "type": "p_val",
           "named": true
         },
         {
