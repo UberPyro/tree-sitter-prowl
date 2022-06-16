@@ -20,7 +20,7 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => seq(optional($.access), $.e),
-    comb: $ => /zap|i|unit|rep|m|run|dup|k|z|nip|sap|t|dip|cat|swat|swap|cons|take|tack|sip|w|peek|cake|poke|b|c|dig|bury|flip|s|s\'|j|j\'|duco|rot/,
+    comb: $ => /zap|i|unit|rep|run|dup|nip|sap|dip|cat|swat|swap|cons|take|tack|sip|peek|cake|poke|dig|bury|flip|duco|rot/,
     prim: $ => /int|float|str|opt/,
 
     id: $ => new RegExp("[a-z]" + id_tail), 
@@ -59,7 +59,7 @@ module.exports = grammar({
     ty_val: $ => choice(
       $.prim, 
       $.cap, 
-      $.id, 
+      $.name, 
       seq("[", $.ty, "]"), 
       seq("#[", $.ty, "]"), 
       seq("sig", repeat($.sp), "end"), 
@@ -78,6 +78,9 @@ module.exports = grammar({
       "}"
     ),
 
+    operator: $ => seq("(", new RegExp("(let|and|as)?" + sym), ")"), 
+    name:  $ => choice($.id, $.operator),
+
     s: $ => choice(
       seq(optional($.access), "type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq(optional($.access), "data", repeat($.parameter), $.id, "=", $.data), 
@@ -87,7 +90,7 @@ module.exports = grammar({
     ), 
 
     e: $ => choice(
-      $.symbol, 
+      $.operator, 
       seq($.e_term, $.symbol), 
       seq($.symbol, $.e_term), 
       $.e_term, 
@@ -197,10 +200,11 @@ module.exports = grammar({
   }
 });
 
-function sep(delimiter, rule) {
-  return optional(sep1(delimiter, rule))
-}
-
 function sep1(delimiter, rule) {
-  return seq(rule, repeat(seq(delimiter, rule)))
+  return seq(
+    optional(delimiter), 
+    rule, 
+    repeat(seq(delimiter, rule)), 
+    optional(delimiter)
+  )
 }

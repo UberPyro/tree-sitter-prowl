@@ -113,6 +113,10 @@
           "named": true
         },
         {
+          "type": "operator",
+          "named": true
+        },
+        {
           "type": "symbol",
           "named": true
         }
@@ -215,6 +219,30 @@
         }
       ]
     }
+  },
+  {
+    "type": "name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "id",
+          "named": true
+        },
+        {
+          "type": "operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "p",
@@ -427,6 +455,10 @@
         },
         {
           "type": "id",
+          "named": true
+        },
+        {
+          "type": "name",
           "named": true
         },
         {
