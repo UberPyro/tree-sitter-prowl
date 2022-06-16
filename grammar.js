@@ -90,7 +90,7 @@ module.exports = grammar({
 
     e: $ => choice(
       $.symbol2, 
-      new RegExp("(let|and|as)" + sym), 
+      // choice($.letop, $.andop, $.asop), // apparently sectioning an `as` inside of a `let` (?) is ambiguous
       seq($.e_term, $.symbol2), 
       seq($.symbol2, $.e_term), 
       $.e_term, 
