@@ -17,8 +17,16 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "e"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "e"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -845,23 +853,6 @@
         {
           "type": "SYMBOL",
           "name": "symbol2"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "letop"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "andop"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "asop"
-            }
-          ]
         },
         {
           "type": "SEQ",
