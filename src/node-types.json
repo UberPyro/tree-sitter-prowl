@@ -55,11 +55,11 @@
           "named": true
         },
         {
-          "type": "id",
+          "type": "letkw",
           "named": true
         },
         {
-          "type": "letkw",
+          "type": "name",
           "named": true
         },
         {
@@ -102,7 +102,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "bind",
@@ -113,11 +113,7 @@
           "named": true
         },
         {
-          "type": "operator",
-          "named": true
-        },
-        {
-          "type": "symbol",
+          "type": "symbol2",
           "named": true
         }
       ]
@@ -226,23 +222,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "id",
           "named": true
-        },
-        {
-          "type": "operator",
-          "named": true
         }
       ]
     }
-  },
-  {
-    "type": "operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "p",
@@ -354,6 +341,10 @@
           "named": true
         },
         {
+          "type": "name",
+          "named": true
+        },
+        {
           "type": "p_val",
           "named": true
         },
@@ -408,6 +399,10 @@
           "named": true
         },
         {
+          "type": "name",
+          "named": true
+        },
+        {
           "type": "stackvar",
           "named": true
         },
@@ -417,6 +412,21 @@
         },
         {
           "type": "ty_val",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbol2",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "symbol",
           "named": true
         }
       ]
@@ -455,10 +465,6 @@
         },
         {
           "type": "id",
-          "named": true
-        },
-        {
-          "type": "name",
           "named": true
         },
         {

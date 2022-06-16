@@ -34,7 +34,6 @@ module.exports = grammar({
     int: $ => /0|[1-9][0-9]*/, 
     float: $ => /[1-9]\.[0-9]*|\.[0-9]+/, 
     string: $ => /"([^"]|\\")*"/,
-    suffix: $ => /[?+*!]|!!/,
 
     // comment: $ => token(
     //   seq("/*", choice($.comment, /(\/[^*]|[^/]\*|\*[^/]|[^*]\/)*.?/), "*/")
@@ -47,7 +46,7 @@ module.exports = grammar({
 
     sp: $ => choice(
       seq("type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
-      seq("spec", $.id, ":", $.ty), 
+      seq("spec", $.name, ":", $.ty), 
       seq("data", repeat($.parameter), $.id, "=", $.data), 
     ), 
 
@@ -59,7 +58,7 @@ module.exports = grammar({
     ty_val: $ => choice(
       $.prim, 
       $.cap, 
-      $.name, 
+      $.id, 
       seq("[", $.ty, "]"), 
       seq("#[", $.ty, "]"), 
       seq("sig", repeat($.sp), "end"), 
@@ -78,25 +77,25 @@ module.exports = grammar({
       "}"
     ),
 
-    operator: $ => seq("(", new RegExp("(let|and|as)?" + sym), ")"), 
-    name:  $ => choice($.id, $.operator),
+    name: $ => choice($.id, seq("(", new RegExp("(let|and|as)?" + sym), ")")),
 
     s: $ => choice(
       seq(optional($.access), "type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq(optional($.access), "data", repeat($.parameter), $.id, "=", $.data), 
-      seq(optional($.access), optional("impl"), "def", repeat($.p_val), $.id, optional(seq(":", $.ty)), "=", $.e), 
+      seq(optional($.access), optional("impl"), "def", repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
       seq(optional("impl"), "open", $.e), 
       seq("mix", $.e), 
     ), 
 
     e: $ => choice(
-      $.operator, 
-      seq($.e_term, $.symbol), 
-      seq($.symbol, $.e_term), 
+      $.symbol2, 
+      new RegExp("(let|and|as)" + sym), 
+      seq($.e_term, $.symbol2), 
+      seq($.symbol2, $.e_term), 
       $.e_term, 
       $.bind, 
       seq($.e_term, $.bind), 
-      seq($.e_term, $.symbol, $.bind), 
+      seq($.e_term, $.symbol2, $.bind), 
     ), 
 
     bind: $ => choice(
@@ -111,7 +110,12 @@ module.exports = grammar({
     andop: $ => new RegExp("and" + sym), 
     asop:  $ => new RegExp("as"  + sym), 
 
-    let_body: $ => seq(repeat($.p_val), $.id, optional(seq(":", $.ty)), "=", $.e), 
+    let_body: $ => seq(repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
+
+    symbol2: $ => choice(
+      "**", "/", "*", "-", "+", "..", ":<", "<>", "::", "<=", "<", ">=", ">", 
+      "/=", "==", $.symbol, ">=>", ">>=", "&&", "<<", ">>", "|", "~", 
+    ), 
 
     e_term: $ => choice(
       prec.right(16, seq($.e_term, "**", $.e_term)), 

@@ -6,7 +6,9 @@ mod
     7 "bizz", 
   ]
 
-  def fizzbuzz = as~ n -> 
+  def fizzbuzz = 
+    (1 ..)
+    as~ n -> 
     rules <?> n rot div
     ~ !pop n to-str | fold
   
