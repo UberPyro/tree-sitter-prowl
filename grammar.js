@@ -9,9 +9,7 @@ module.exports = grammar({
     $.comment, 
   ], 
 
-  // word: $ => [
-  //   $.id
-  // ], 
+  word: $ => $.id, 
 
   inline: $ => [
     $.let_body, 
