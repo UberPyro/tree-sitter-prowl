@@ -600,6 +600,10 @@
         }
       ]
     },
+    "spec_op": {
+      "type": "PATTERN",
+      "value": "(let|and|as)?[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+    },
     "name": {
       "type": "CHOICE",
       "members": [
@@ -615,8 +619,8 @@
               "value": "("
             },
             {
-              "type": "PATTERN",
-              "value": "(let|and|as)?[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+              "type": "SYMBOL",
+              "name": "spec_op"
             },
             {
               "type": "STRING",

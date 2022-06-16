@@ -222,10 +222,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "id",
+          "named": true
+        },
+        {
+          "type": "spec_op",
           "named": true
         }
       ]
@@ -741,6 +745,10 @@
   {
     "type": "spec",
     "named": false
+  },
+  {
+    "type": "spec_op",
+    "named": true
   },
   {
     "type": "stackvar",

@@ -77,7 +77,8 @@ module.exports = grammar({
       "}"
     ),
 
-    name: $ => choice($.id, seq("(", new RegExp("(let|and|as)?" + sym), ")")),
+    spec_op: $ => new RegExp("(let|and|as)?" + sym),
+    name: $ => choice($.id, seq("(", $.spec_op, ")")),
 
     s: $ => choice(
       seq(optional($.access), "type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
