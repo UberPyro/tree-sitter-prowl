@@ -17,7 +17,7 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => seq(optional($.access), optional($.e)),
+    source_file: $ => repeat($.s),
     comb: $ => /zap|i|unit|rep|run|dup|nip|sap|dip|cat|swat|swap|cons|take|tack|sip|peek|cake|poke|dig|bury|flip|duco|rot/,
     prim: $ => /int|float|str|opt/,
 

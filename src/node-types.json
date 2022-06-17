@@ -376,11 +376,7 @@
       "required": false,
       "types": [
         {
-          "type": "access",
-          "named": true
-        },
-        {
-          "type": "e",
+          "type": "s",
           "named": true
         }
       ]
