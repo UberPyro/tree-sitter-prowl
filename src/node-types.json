@@ -155,6 +155,14 @@
       "required": false,
       "types": [
         {
+          "type": "andop",
+          "named": true
+        },
+        {
+          "type": "asop",
+          "named": true
+        },
+        {
           "type": "cap",
           "named": true
         },
@@ -164,6 +172,10 @@
         },
         {
           "type": "e",
+          "named": true
+        },
+        {
+          "type": "e_term",
           "named": true
         },
         {
@@ -187,6 +199,10 @@
           "named": true
         },
         {
+          "type": "letop",
+          "named": true
+        },
+        {
           "type": "reg_paren",
           "named": true
         },
@@ -196,6 +212,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol2",
           "named": true
         }
       ]

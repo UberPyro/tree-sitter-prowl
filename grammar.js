@@ -1,5 +1,6 @@
 const id_tail = "(\-?[A-Za-z0-9_\'])*";
 const sym = "[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+";
+const suffix = "([?+*!]|!!)?";
 
 module.exports = grammar({
   name: 'prowl',
@@ -21,9 +22,16 @@ module.exports = grammar({
     comb: $ => /zap|i|unit|rep|run|dup|nip|sap|dip|cat|swat|swap|cons|take|tack|sip|peek|cake|poke|dig|bury|flip|duco|rot/,
     prim: $ => /int|float|str|opt/,
 
+    letkw: $ => choice("let", $.letop), 
+    andkw: $ => choice("and", $.andop), 
+    askw:  $ => choice("as",  $.asop), 
+    letop: $ => new RegExp("let" + sym), 
+    andop: $ => new RegExp("and" + sym), 
+    asop:  $ => new RegExp("as"  + sym), 
+
     id: $ => new RegExp("[a-z]" + id_tail), 
-    id_reg: $ => new RegExp("[a-z]" + id_tail + "([?+*!]|!!)?"), 
-    reg_paren: $ => new RegExp("\\)" + "([?+*!]|!!)?"), 
+    id_reg: $ => new RegExp("[a-z]" + id_tail + suffix), 
+    reg_paren: $ => new RegExp("\\)" + suffix), 
     cap: $ => new RegExp("[A-Z]" + id_tail), 
     symbol: $ => new RegExp(sym), 
     infix_word: $ => new RegExp("<[a-z]" + id_tail + ">"), 
@@ -90,7 +98,6 @@ module.exports = grammar({
 
     e: $ => choice(
       $.symbol2, 
-      // choice($.letop, $.andop, $.asop), // apparently sectioning an `as` inside of a `let` (?) is ambiguous
       seq($.e_term, $.symbol2), 
       seq($.symbol2, $.e_term), 
       $.e_term, 
@@ -103,13 +110,6 @@ module.exports = grammar({
       seq($.letkw, $.let_body, repeat(seq($.andkw, $.let_body)), "->", $.e), 
       seq($.askw, repeat($.p_val), optional(seq(":", $.ty)), "->", $.e), 
     ), 
-
-    letkw: $ => choice("let", $.letop), 
-    andkw: $ => choice("and", $.andop), 
-    askw:  $ => choice("as",  $.asop), 
-    letop: $ => new RegExp("let" + sym), 
-    andop: $ => new RegExp("and" + sym), 
-    asop:  $ => new RegExp("as"  + sym), 
 
     let_body: $ => seq(repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
 
@@ -171,6 +171,10 @@ module.exports = grammar({
 
       prec.left(2, seq($.e_val, ".", $.e_val)), 
       prec.left(2, seq($.e_val, ":", $.e_val)), 
+
+      seq("{", choice($.symbol2, $.letop, $.andop, $.asop), "}"), 
+      seq("{", $.e_term, $.symbol2, "}"), 
+      seq("{", $.symbol2, $.e_term, "}"), 
     ), 
 
     p: $ => choice(

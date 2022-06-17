@@ -17,6 +17,57 @@
       "type": "PATTERN",
       "value": "int|float|str|opt"
     },
+    "letkw": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "let"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "letop"
+        }
+      ]
+    },
+    "andkw": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "and"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "andop"
+        }
+      ]
+    },
+    "askw": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "as"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "asop"
+        }
+      ]
+    },
+    "letop": {
+      "type": "PATTERN",
+      "value": "let[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+    },
+    "andop": {
+      "type": "PATTERN",
+      "value": "and[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+    },
+    "asop": {
+      "type": "PATTERN",
+      "value": "as[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
+    },
     "id": {
       "type": "PATTERN",
       "value": "[a-z](-?[A-Za-z0-9_'])*"
@@ -1011,57 +1062,6 @@
           ]
         }
       ]
-    },
-    "letkw": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "let"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "letop"
-        }
-      ]
-    },
-    "andkw": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "and"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "andop"
-        }
-      ]
-    },
-    "askw": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "as"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "asop"
-        }
-      ]
-    },
-    "letop": {
-      "type": "PATTERN",
-      "value": "let[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
-    },
-    "andop": {
-      "type": "PATTERN",
-      "value": "and[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
-    },
-    "asop": {
-      "type": "PATTERN",
-      "value": "as[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
     },
     "let_body": {
       "type": "SEQ",
@@ -2239,6 +2239,82 @@
               }
             ]
           }
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "symbol2"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "letop"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "andop"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "asop"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "e_term"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol2"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "{"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "symbol2"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "e_term"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
         }
       ]
     },
