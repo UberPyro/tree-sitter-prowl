@@ -186,6 +186,7 @@ module.exports = grammar({
       $.int, 
       $.float, 
       $.string, 
+      seq(optional("impl"), "open"), 
       
       seq("#[", sep1(",", $.p), "]"), 
       seq("[", $.p, "]"), 
