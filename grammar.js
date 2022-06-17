@@ -46,6 +46,8 @@ module.exports = grammar({
       seq("type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq("spec", $.name, ":", $.ty), 
       seq("data", repeat($.parameter), $.id, "=", $.data), 
+      seq("open", $.ty_val), 
+      seq("mix", $.ty_val), 
     ), 
 
     ty: $ => choice(

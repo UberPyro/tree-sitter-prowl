@@ -217,6 +217,32 @@
               "name": "data"
             }
           ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "open"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ty_val"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "mix"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ty_val"
+            }
+          ]
         }
       ]
     },
