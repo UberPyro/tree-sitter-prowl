@@ -41,11 +41,7 @@ module.exports = grammar({
     float: $ => /[1-9]\.[0-9]*|\.[0-9]+/, 
     string: $ => /"([^"]|\\")*"/,
 
-    // comment: $ => token(
-    //   seq("/*", choice($.comment, /(\/[^*]|[^/]\*|\*[^/]|[^*]\/)*.?/), "*/")
-    // ),
-
-    comment: $ => /\/\*(.[^/]|[^*].)*[^/]?\*\//, 
+    comment: $ => /\*[\s\S]*?\*/, 
 
     access: $ => choice("priv", "opaq"), 
     parameter: $ => seq("[", $.stackvar, "--", $.stackvar, "]"), 
@@ -161,6 +157,7 @@ module.exports = grammar({
       seq("#[", sep1(",", $.e), "]"), 
       seq("[", $.e, "]"), 
       seq("[", "]"), 
+      seq("[", ";", "]"), 
       $.id_reg, 
 
       $.cap, 
@@ -169,6 +166,7 @@ module.exports = grammar({
 
       seq("(", sep1(";", sep1(",", choice($.e, $.bind_exn))), $.reg_paren), 
       seq("(", $.reg_paren), 
+      seq("(", ";", ")"),
 
       prec.right(1, seq("&", $.e_val)),
       prec.right(1, seq("!", $.e_val)),

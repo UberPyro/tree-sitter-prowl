@@ -114,7 +114,7 @@
     },
     "comment": {
       "type": "PATTERN",
-      "value": "\\/\\*(.[^/]|[^*].)*[^/]?\\*\\/"
+      "value": "\\*[\\s\\S]*?\\*"
     },
     "access": {
       "type": "CHOICE",
@@ -1936,6 +1936,23 @@
           ]
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "["
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            },
+            {
+              "type": "STRING",
+              "value": "]"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "id_reg"
         },
@@ -2300,6 +2317,23 @@
             {
               "type": "SYMBOL",
               "name": "reg_paren"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
             }
           ]
         },
