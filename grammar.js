@@ -69,6 +69,8 @@ module.exports = grammar({
       seq("sig", repeat($.sp), "end"), 
       seq("mod", repeat($.sp), "end"), 
       seq("<", $.id, ":", $.ty_val, ">"), 
+      seq("{", "}"), 
+      seq("{", ";", "}"), 
     ), 
 
     data: $ => choice(
@@ -83,7 +85,11 @@ module.exports = grammar({
     ),
 
     spec_op: $ => new RegExp("(let|and|as)?" + sym),
-    name: $ => choice($.id, seq("(", $.spec_op, ")")),
+    name: $ => choice(
+      $.id, 
+      seq("(", $.spec_op, ")"), 
+      seq("{", $.spec_op, "}"), 
+    ),
 
     s: $ => choice(
       seq(optional($.access), "type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
@@ -177,6 +183,7 @@ module.exports = grammar({
       seq("{", choice($.symbol2, $.letop, $.andop, $.asop), "}"), 
       seq("{", $.e_term, $.symbol2, "}"), 
       seq("{", $.symbol2, $.e_term, "}"), 
+      seq("{", "}"), 
     ), 
 
     p: $ => choice(
@@ -206,6 +213,7 @@ module.exports = grammar({
       $.blank, 
       seq("(", $.p, ")"), 
       seq("(", $.p_val, ":", $.ty_val, ")"), 
+      seq("{", "}"), 
 
       prec.left(1, seq($.id, ".", $.p_val)), 
     ), 
