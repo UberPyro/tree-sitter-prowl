@@ -278,6 +278,10 @@
         {
           "type": "spec_op",
           "named": true
+        },
+        {
+          "type": "symbol2",
+          "named": true
         }
       ]
     }

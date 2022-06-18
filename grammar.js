@@ -87,7 +87,7 @@ module.exports = grammar({
     spec_op: $ => new RegExp("(let|and|as)?" + sym),
     name: $ => choice(
       $.id, 
-      seq("(", $.spec_op, ")"), 
+      seq("(", $.symbol2, ")"), 
       seq("{", $.spec_op, "}"), 
     ),
 

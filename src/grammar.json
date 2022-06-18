@@ -743,7 +743,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "spec_op"
+              "name": "symbol2"
             },
             {
               "type": "STRING",
