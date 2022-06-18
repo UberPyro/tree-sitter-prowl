@@ -88,10 +88,6 @@
       "type": "PATTERN",
       "value": "[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
     },
-    "infix_word": {
-      "type": "PATTERN",
-      "value": "<[a-z](-?[A-Za-z0-9_'])*>"
-    },
     "stackvar": {
       "type": "PATTERN",
       "value": "[a-z]\\*(-?[A-Za-z0-9_'])*"
@@ -1665,27 +1661,6 @@
               {
                 "type": "STRING",
                 "value": "=="
-              },
-              {
-                "type": "SYMBOL",
-                "name": "e_term"
-              }
-            ]
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 6,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "e_term"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "infix_word"
               },
               {
                 "type": "SYMBOL",
