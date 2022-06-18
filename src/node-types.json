@@ -74,29 +74,6 @@
     }
   },
   {
-    "type": "bind_exn",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "e",
-          "named": true
-        },
-        {
-          "type": "p_val",
-          "named": true
-        },
-        {
-          "type": "ty",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "data",
     "named": true,
     "fields": {},
@@ -179,10 +156,6 @@
         },
         {
           "type": "asop",
-          "named": true
-        },
-        {
-          "type": "bind_exn",
           "named": true
         },
         {
@@ -686,10 +659,6 @@
     "named": false
   },
   {
-    "type": "[]",
-    "named": false
-  },
-  {
     "type": "]",
     "named": false
   },
@@ -716,6 +685,10 @@
   {
     "type": "cap",
     "named": true
+  },
+  {
+    "type": "catch",
+    "named": false
   },
   {
     "type": "comb",
