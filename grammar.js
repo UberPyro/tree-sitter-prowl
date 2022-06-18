@@ -114,8 +114,6 @@ module.exports = grammar({
       seq($.askw, repeat($.p_val), optional(seq(":", $.ty)), "->", $.e), 
     ), 
 
-    bind_exn: $ => seq("exn", repeat($.p_val), optional(seq(":", $.ty)), "->", $.e), 
-
     let_body: $ => seq(repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
 
     symbol2: $ => choice(
@@ -169,7 +167,7 @@ module.exports = grammar({
       seq("{", optional(seq("mix", $.e, ",")), sep1(",", seq($.id, optional(seq("=", $.e)))), "}"), 
       seq("mod", repeat($.s), "end"), 
 
-      seq("(", sep1(";", sep1(",", choice($.e, $.bind_exn))), $.reg_paren), 
+      seq("(", sep1(";", sep1(",", $.e)), $.reg_paren), 
       seq("(", $.reg_paren), 
       seq("(", ";", ")"),
 
@@ -199,10 +197,12 @@ module.exports = grammar({
       $.float, 
       $.string, 
       seq(optional("impl"), "open"), 
+      "catch", 
       
       seq("#[", sep1(",", $.p), "]"), 
       seq("[", $.p, "]"), 
-      seq("[]"), 
+      seq("[", "]"), 
+      seq("[", ";", "]"), 
 
       $.cap, 
       seq("{", sep1(", ", seq($.id, optional(seq("=", $.p)))), optional(seq(", ", "..")), "}"), 
@@ -212,6 +212,8 @@ module.exports = grammar({
       $.blank, 
       seq("(", $.p, ")"), 
       seq("(", $.p_val, ":", $.ty_val, ")"), 
+      seq("(", ")"), 
+      seq("(", ";", ")"), 
       seq("{", "}"), 
 
       prec.left(1, seq($.id, ".", $.p_val)), 
