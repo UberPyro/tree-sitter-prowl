@@ -56,6 +56,7 @@ module.exports = grammar({
       seq("data", repeat($.parameter), $.id, "=", $.data), 
       seq("open", $.ty_val), 
       seq("mix", $.ty_val), 
+      seq("exn", repeat(choice($.ty_val, $.record)), $.cap), 
     ), 
 
     ty: $ => choice(
@@ -94,6 +95,7 @@ module.exports = grammar({
       seq(optional($.access), optional("impl"), "def", repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
       seq(optional("impl"), "open", $.e), 
       seq("mix", $.e), 
+      seq("exn", repeat(choice($.ty_val, $.record)), $.cap), 
     ), 
 
     e: $ => choice(
@@ -110,6 +112,8 @@ module.exports = grammar({
       seq($.letkw, $.let_body, repeat(seq($.andkw, $.let_body)), "->", $.e), 
       seq($.askw, repeat($.p_val), optional(seq(":", $.ty)), "->", $.e), 
     ), 
+
+    bind_exn: $ => seq("exn", repeat($.p_val), optional(seq(":", $.ty)), "->", $.e), 
 
     let_body: $ => seq(repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
 
@@ -163,7 +167,7 @@ module.exports = grammar({
       seq("{", optional(seq("mix", $.e, ",")), sep1(",", seq($.id, optional(seq("=", $.e)))), "}"), 
       seq("mod", repeat($.s), "end"), 
 
-      seq("(", sep1(";", sep1(",", $.e)), $.reg_paren), 
+      seq("(", sep1(";", sep1(",", choice($.e, $.bind_exn))), $.reg_paren), 
       seq("(", $.reg_paren), 
 
       prec.right(1, seq("&", $.e_val)),

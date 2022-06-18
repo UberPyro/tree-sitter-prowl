@@ -74,6 +74,29 @@
     }
   },
   {
+    "type": "bind_exn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "e",
+          "named": true
+        },
+        {
+          "type": "p_val",
+          "named": true
+        },
+        {
+          "type": "ty",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "data",
     "named": true,
     "fields": {},
@@ -160,6 +183,10 @@
         },
         {
           "type": "asop",
+          "named": true
+        },
+        {
+          "type": "bind_exn",
           "named": true
         },
         {
@@ -353,6 +380,10 @@
           "named": true
         },
         {
+          "type": "cap",
+          "named": true
+        },
+        {
           "type": "data",
           "named": true
         },
@@ -370,6 +401,10 @@
         },
         {
           "type": "p_val",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -411,6 +446,10 @@
       "required": true,
       "types": [
         {
+          "type": "cap",
+          "named": true
+        },
+        {
           "type": "data",
           "named": true
         },
@@ -420,6 +459,10 @@
         },
         {
           "type": "name",
+          "named": true
+        },
+        {
+          "type": "record",
           "named": true
         },
         {
@@ -692,6 +735,10 @@
   },
   {
     "type": "end",
+    "named": false
+  },
+  {
+    "type": "exn",
     "named": false
   },
   {
