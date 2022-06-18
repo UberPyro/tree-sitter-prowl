@@ -822,6 +822,10 @@
     "named": true
   },
   {
+    "type": "throw",
+    "named": false
+  },
+  {
     "type": "type",
     "named": false
   },
