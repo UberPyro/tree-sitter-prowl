@@ -11,7 +11,7 @@
     },
     "comb": {
       "type": "PATTERN",
-      "value": "zap|i|unit|rep|run|dup|nip|sap|dip|cat|swat|swap|cons|take|tack|sip|peek|cake|poke|dig|bury|flip|duco|rot"
+      "value": "zap|i|unit|run|dup|nip|sap|dip|cat|swat|swap|cons|tack|sip|peek|cake|poke|dig|bury|flip|duco|rot"
     },
     "prim": {
       "type": "PATTERN",
