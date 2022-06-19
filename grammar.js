@@ -1,6 +1,7 @@
 const id_tail = "(\-?[A-Za-z0-9_\'])*";
 const sym = "[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+";
 const suffix = "([?+*!]|!!)?";
+const comment = /([^*\/]|\*[^\/]|\/[^*]|[ \t\n])*[^*\/]/;
 
 module.exports = grammar({
   name: 'prowl',
@@ -61,18 +62,12 @@ module.exports = grammar({
       /\\o[0-3][0-7][0-7]/
     ),
 
-    comment: $ => choice(
-      /\/\*[\s\S]*?\*\//,
-      seq("/*", $.comment, "*/")
-    ), 
-
-    // comment2: $ => repeat($.comment_content),
-    // comment_content: $ => choice(
-    //   token.immediate(" "),
-    //   token.immediate("\t"),
-    //   token.immediate("\n"),
-    //   /([^*]|\*[^/])+[^*]?/
-    // ),
+    comment: $ => seq(
+      "/*", choice(
+        comment, 
+        comment, $.comment, comment
+      ), "*/"
+    ),
 
     access: $ => choice("priv", "opaq"), 
     parameter: $ => seq(

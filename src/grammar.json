@@ -218,28 +218,36 @@
       ]
     },
     "comment": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\\/\\*[\\s\\S]*?\\*\\/"
+          "type": "STRING",
+          "value": "/*"
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "/*"
+              "type": "PATTERN",
+              "value": "([^*\\/]|\\*[^\\/]|\\/[^*]|[ \\t\\n])*[^*\\/]"
+            },
+            {
+              "type": "PATTERN",
+              "value": "([^*\\/]|\\*[^\\/]|\\/[^*]|[ \\t\\n])*[^*\\/]"
             },
             {
               "type": "SYMBOL",
               "name": "comment"
             },
             {
-              "type": "STRING",
-              "value": "*/"
+              "type": "PATTERN",
+              "value": "([^*\\/]|\\*[^\\/]|\\/[^*]|[ \\t\\n])*[^*\\/]"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": "*/"
         }
       ]
     },
