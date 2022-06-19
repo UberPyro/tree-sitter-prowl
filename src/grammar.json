@@ -227,7 +227,7 @@
     },
     "comment": {
       "type": "PATTERN",
-      "value": "\\*[\\s\\S]*?\\*"
+      "value": "\\\\\\*[\\s\\S]*?\\*\\\\"
     },
     "access": {
       "type": "CHOICE",

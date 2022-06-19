@@ -61,7 +61,7 @@ module.exports = grammar({
       /\\o[0-3][0-7][0-7]/
     ),
 
-    comment: $ => /\*[\s\S]*?\*/, 
+    comment: $ => /\\\*[\s\S]*?\*\\/, 
 
     access: $ => choice("priv", "opaq"), 
     parameter: $ => seq(
