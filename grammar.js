@@ -68,6 +68,7 @@ module.exports = grammar({
       $.id, 
       seq("[", $.ty, "]"), 
       seq("#[", $.ty, "]"), 
+      seq("%[", $.cap, "=>", $.ty, "]"), 
       seq("sig", repeat($.sp), "end"), 
       seq("mod", repeat($.sp), "end"), 
       seq("<", $.id, ":", $.ty_val, ">"), 
@@ -160,7 +161,8 @@ module.exports = grammar({
       $.float, 
       $.string, 
 
-      seq("#[", sep1(",", $.e), "]"), 
+      seq("#[", sep(",", $.e), "]"), 
+      seq("%[", sep(",", seq($.e, "=>", $.e)), "]"), 
       seq("[", $.e, "]"), 
       seq("[", "]"), 
       seq("[", ";", "]"), 
@@ -202,7 +204,8 @@ module.exports = grammar({
       seq(optional("impl"), "open"), 
       "catch", 
       
-      seq("#[", sep1(",", $.p), "]"), 
+      seq("#[", sep(",", $.p), "]"), 
+      seq("%[", sep(",", seq($.e, "=>", $.p)), "]"), 
       seq("[", $.p, "]"), 
       seq("[", "]"), 
       seq("[", ";", "]"), 
@@ -223,6 +226,10 @@ module.exports = grammar({
     ), 
   }
 });
+
+function sep(delimiter, rule) {
+  return optional(sep1(delimiter, rule))
+}
 
 function sep1(delimiter, rule) {
   return seq(

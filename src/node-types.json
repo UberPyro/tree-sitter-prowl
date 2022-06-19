@@ -291,6 +291,10 @@
           "named": true
         },
         {
+          "type": "e",
+          "named": true
+        },
+        {
           "type": "float",
           "named": true
         },
@@ -531,6 +535,10 @@
     "named": false
   },
   {
+    "type": "%[",
+    "named": false
+  },
+  {
     "type": "&",
     "named": false
   },
@@ -632,6 +640,10 @@
   },
   {
     "type": "==",
+    "named": false
+  },
+  {
+    "type": "=>",
     "named": false
   },
   {
