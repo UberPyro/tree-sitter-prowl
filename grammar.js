@@ -66,7 +66,13 @@ module.exports = grammar({
       seq("/*", $.comment, "*/")
     ), 
 
-
+    // comment2: $ => repeat($.comment_content),
+    // comment_content: $ => choice(
+    //   token.immediate(" "),
+    //   token.immediate("\t"),
+    //   token.immediate("\n"),
+    //   /([^*]|\*[^/])+[^*]?/
+    // ),
 
     access: $ => choice("priv", "opaq"), 
     parameter: $ => seq(
