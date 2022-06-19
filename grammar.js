@@ -38,16 +38,16 @@ module.exports = grammar({
     blank: $ => new RegExp("_" + id_tail), 
     int: $ => /0|[1-9][0-9]*/, 
     float: $ => /[1-9]\.[0-9]*|\.[0-9]+/, 
-    string: $ => seq('"', optional($.string_content), '"'),
+    string: $ => seq('"', repeat($.string_content), '"'),
     char: $ => seq("'", optional($.character_content), "'"),
 
-    string_content: $ => repeat1(choice(
+    string_content: $ => choice(
       token.immediate(' '),
       token.immediate('\n'),
       token.immediate('\t'),
       /[^\\"]+/,
       $.escape_sequence
-    )),
+    ),
 
     character_content: $ => choice(
       /[^\\']/,
@@ -61,7 +61,15 @@ module.exports = grammar({
       /\\o[0-3][0-7][0-7]/
     ),
 
-    comment: $ => /\\\*[\s\S]*?\*\\/, 
+    comment: $ => repeat($.comment_content),
+
+    comment_content: $ => choice(
+      token.immediate(' '),
+      token.immediate('\n'),
+      token.immediate('\t'),
+      /\/\*.*?\*\//,
+      seq("/*", $.comment, "*/")
+    ), 
 
     access: $ => choice("priv", "opaq"), 
     parameter: $ => seq(
