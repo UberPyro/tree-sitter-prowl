@@ -54,9 +54,9 @@ module.exports = grammar({
       seq("exn", repeat(choice($.ty_val, $.record)), $.cap), 
     ), 
 
-    ty: $ => choice(
-      seq($.stackvar, repeat($.ty_val), "--", $.stackvar, repeat($.ty_val)), 
-      seq(repeat($.ty_val), "--", repeat($.ty_val))
+    ty: $ => seq(
+      optional($.stackvar), repeat($.ty_val), "--", 
+      optional($.stackvar), repeat($.ty_val)
     ), 
 
     ty_val: $ => choice(
