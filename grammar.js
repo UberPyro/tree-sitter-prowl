@@ -43,7 +43,10 @@ module.exports = grammar({
     comment: $ => /\*[\s\S]*?\*/, 
 
     access: $ => choice("priv", "opaq"), 
-    parameter: $ => seq("[", $.stackvar, "--", $.stackvar, "]"), 
+    parameter: $ => seq(
+      "[", $.stackvar, repeat($.cap), "--", 
+           $.stackvar, repeat($.cap), "]"
+    ), 
 
     sp: $ => choice(
       seq("type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 

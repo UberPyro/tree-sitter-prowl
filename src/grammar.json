@@ -137,12 +137,26 @@
           "name": "stackvar"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "cap"
+          }
+        },
+        {
           "type": "STRING",
           "value": "--"
         },
         {
           "type": "SYMBOL",
           "name": "stackvar"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "cap"
+          }
         },
         {
           "type": "STRING",
