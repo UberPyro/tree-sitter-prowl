@@ -15,7 +15,7 @@
     },
     "prim": {
       "type": "PATTERN",
-      "value": "int|float|str|opt"
+      "value": "int|float|str|char|opt"
     },
     "letkw": {
       "type": "CHOICE",
@@ -107,6 +107,10 @@
     "string": {
       "type": "PATTERN",
       "value": "\"([^\"]|\\\\\")*\""
+    },
+    "char": {
+      "type": "PATTERN",
+      "value": "\\'[^']\\'"
     },
     "comment": {
       "type": "PATTERN",
@@ -1852,6 +1856,10 @@
           "name": "string"
         },
         {
+          "type": "SYMBOL",
+          "name": "char"
+        },
+        {
           "type": "SEQ",
           "members": [
             {
@@ -2690,6 +2698,10 @@
         {
           "type": "SYMBOL",
           "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "char"
         },
         {
           "type": "SEQ",

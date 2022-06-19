@@ -20,7 +20,7 @@ module.exports = grammar({
   rules: {
     source_file: $ => repeat($.s),
     comb: $ => /zap|i|unit|run|dup|nip|sap|dip|cat|swat|swap|cons|tack|sip|peek|cake|poke|dig|bury|flip|duco|rot/,
-    prim: $ => /int|float|str|opt/,
+    prim: $ => /int|float|str|char|opt/,
 
     letkw: $ => choice("let", $.letop), 
     andkw: $ => choice("and", $.andop), 
@@ -39,6 +39,7 @@ module.exports = grammar({
     int: $ => /0|[1-9][0-9]*/, 
     float: $ => /[1-9]\.[0-9]*|\.[0-9]+/, 
     string: $ => /"([^"]|\\")*"/,
+    char: $ => /\'[^']\'/,
 
     comment: $ => /\*[\s\S]*?\*/, 
 
@@ -160,6 +161,7 @@ module.exports = grammar({
       $.int, 
       $.float, 
       $.string, 
+      $.char, 
 
       seq("#[", sep(",", $.e), "]"), 
       seq("%[", sep(",", seq($.e, "=>", $.e)), "]"), 
@@ -201,6 +203,7 @@ module.exports = grammar({
       $.int, 
       $.float, 
       $.string, 
+      $.char, 
       seq(optional("impl"), "open"), 
       "catch", 
       

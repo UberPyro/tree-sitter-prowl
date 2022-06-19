@@ -163,6 +163,10 @@
           "named": true
         },
         {
+          "type": "char",
+          "named": true
+        },
+        {
           "type": "comb",
           "named": true
         },
@@ -288,6 +292,10 @@
         },
         {
           "type": "cap",
+          "named": true
+        },
+        {
+          "type": "char",
           "named": true
         },
         {
@@ -701,6 +709,10 @@
   {
     "type": "catch",
     "named": false
+  },
+  {
+    "type": "char",
+    "named": true
   },
   {
     "type": "comb",
