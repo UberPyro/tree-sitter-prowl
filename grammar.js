@@ -38,8 +38,28 @@ module.exports = grammar({
     blank: $ => new RegExp("_" + id_tail), 
     int: $ => /0|[1-9][0-9]*/, 
     float: $ => /[1-9]\.[0-9]*|\.[0-9]+/, 
-    string: $ => /"([^"]|\\")*"/,
-    char: $ => /\'[^']\'/,
+    string: $ => seq('"', optional($.string_content), '"'),
+    char: $ => seq("'", optional($.character_content), "'"),
+
+    string_content: $ => repeat1(choice(
+      token.immediate(' '),
+      token.immediate('\n'),
+      token.immediate('\t'),
+      /[^\\"]+/,
+      $.escape_sequence
+    )),
+
+    character_content: $ => choice(
+      /[^\\']/,
+      $.escape_sequence
+    ),
+
+    escape_sequence: $ => choice(
+      /\\[\\"'ntbr ]/,
+      /\\[0-9][0-9][0-9]/,
+      /\\x[0-9A-Fa-f][0-9A-Fa-f]/,
+      /\\o[0-3][0-7][0-7]/
+    ),
 
     comment: $ => /\*[\s\S]*?\*/, 
 
