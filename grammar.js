@@ -97,7 +97,7 @@ module.exports = grammar({
       seq("#[", $.ty, "]"), 
       seq("%[", $.cap, "=>", $.ty, "]"), 
       seq("sig", repeat($.sp), "end"), 
-      seq("mod", repeat($.sp), "end"), 
+      seq("impl", repeat($.sp), "end"), 
       seq("<", $.id, ":", $.ty_val, ">"), 
       seq("{", "}"), 
       seq("{", ";", "}"), 
@@ -202,7 +202,7 @@ module.exports = grammar({
 
       $.cap, 
       seq("{", optional(seq("mix", $.e, ",")), sep1(",", seq($.id, optional(seq("=", $.e)))), "}"), 
-      seq("mod", repeat($.s), "end"), 
+      seq("impl", repeat($.s), "end"), 
 
       seq("(", sep1(";", sep1(",", $.e)), $.reg_paren), 
       seq("(", $.reg_paren), 
