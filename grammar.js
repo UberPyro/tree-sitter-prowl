@@ -124,8 +124,8 @@ module.exports = grammar({
     s: $ => choice(
       seq(optional($.access), "type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq(optional($.access), "data", repeat($.parameter), $.id, "=", $.data), 
-      seq(optional($.access), optional("impl"), "def", repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
-      seq(optional("impl"), "open", $.e), 
+      seq(optional($.access), optional("tacit"), "def", repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
+      seq(optional("tacit"), "open", $.e), 
       seq("mix", $.e), 
       seq("exn", repeat(choice($.ty_val, $.record)), $.cap), 
     ), 
@@ -234,7 +234,7 @@ module.exports = grammar({
       $.float, 
       $.string, 
       $.char, 
-      seq(optional("impl"), "open"), 
+      seq(optional("tacit"), "open"), 
       "catch", 
       
       seq("#[", sep(",", $.p), "]"), 
