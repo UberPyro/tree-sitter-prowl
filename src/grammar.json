@@ -1457,7 +1457,15 @@
         },
         {
           "type": "STRING",
+          "value": ">~>"
+        },
+        {
+          "type": "STRING",
           "value": ">>="
+        },
+        {
+          "type": "STRING",
+          "value": ">>~"
         },
         {
           "type": "STRING",
@@ -1847,6 +1855,27 @@
         },
         {
           "type": "PREC_LEFT",
+          "value": 5,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "e_term"
+              },
+              {
+                "type": "STRING",
+                "value": ">~>"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "e_term"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
           "value": 4,
           "content": {
             "type": "SEQ",
@@ -1858,6 +1887,27 @@
               {
                 "type": "STRING",
                 "value": ">>="
+              },
+              {
+                "type": "SYMBOL",
+                "name": "e_term"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 4,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "e_term"
+              },
+              {
+                "type": "STRING",
+                "value": ">>~"
               },
               {
                 "type": "SYMBOL",
