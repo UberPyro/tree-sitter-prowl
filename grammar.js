@@ -19,7 +19,7 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => repeat($.s),
+    source_file: $ => repeat($.def),
     comb: $ => /zap|i|unit|run|dup|nip|sap|dip|cat|swat|swap|cons|tack|sip|peek|cake|poke|dig|bury|flip|duco|rot/,
     prim: $ => /int|float|str|char|opt/,
 
@@ -76,13 +76,21 @@ module.exports = grammar({
       ), 
       $.cap
     ), 
-    sp: $ => choice(
+
+    sig: $ => choice(
+      $.cap, 
+      seq("sig", repeat($.spec), "end")
+    ),
+
+    spec: $ => choice(
       seq("type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq("spec", $.name, ":", $.ty), 
       seq("data", repeat($.parameter), $.id, "=", $.data), 
       seq("open", $.ty_val), 
       seq("mix", $.ty_val), 
       seq("exn", repeat(choice($.ty_val, $.record)), $.cap), 
+      seq("mod", repeat($.spec), "end"),
+      seq("sig", repeat($.spec), "end"),
     ), 
 
     ty: $ => seq(
@@ -95,13 +103,15 @@ module.exports = grammar({
       $.cap, 
       $.id, 
       seq("[", $.ty, "]"), 
+      seq("(", $.ty, ")"),
       seq("#[", $.ty, "]"), 
       seq("%[", $.cap, "=>", $.ty, "]"), 
-      seq("sig", repeat($.sp), "end"), 
-      seq("impl", repeat($.sp), "end"), 
+      seq("(", "mod", $.sig, ")"),
       seq("<", $.id, ":", $.ty_val, ">"), 
       seq("{", "}"), 
       seq("{", ";", "}"), 
+      prec.left(seq($.ty_val, ".", $.ty_val)),
+      seq("(", "type", $.cap, ")"),
     ), 
 
     data: $ => choice(
@@ -122,13 +132,24 @@ module.exports = grammar({
       seq("{", $.spec_op, "}"), 
     ),
 
-    s: $ => choice(
+    mod: $ => repeat1($.mod_val),
+
+    mod_val: $ => choice(
+      $.cap,
+      seq("impl", repeat($.def), "end"),
+      seq("(", "def", $.id, ":", $.sig, ")"),
+      seq("(", $.mod, ")"),
+    ),
+
+    def: $ => choice(
       seq(optional($.access), "type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq(optional($.access), "data", repeat($.parameter), $.id, "=", $.data), 
-      seq(optional($.access), optional("tacit"), "def", repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
+      seq(optional($.access), "def", repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
       seq(optional("tacit"), "open", $.e), 
       seq("mix", $.e), 
       seq("exn", repeat(choice($.ty_val, $.record)), $.cap), 
+      seq(optional($.access), "mod", "type", $.cap, "=", $.sig),
+      seq(optional($.access), optional("tacit"), "mod", $.cap, optional(seq(choice(":", ":>"), $.ty)), "=", $.mod)
     ), 
 
     e: $ => choice(
@@ -203,7 +224,7 @@ module.exports = grammar({
 
       $.cap, 
       seq("{", optional(seq("mix", $.e, ",")), sep1(",", seq($.id, optional(seq("=", $.e)))), "}"), 
-      seq("impl", repeat($.s), "end"), 
+      seq("(", "mod", $.mod, optional(seq(":", $.sig)), ")"), 
 
       seq("(", sep1(";", sep1(",", $.e)), $.reg_paren), 
       seq("(", $.reg_paren), 
@@ -235,7 +256,6 @@ module.exports = grammar({
       $.float, 
       $.string, 
       $.char, 
-      seq(optional("tacit"), "open"), 
       "catch", 
       
       seq("#[", sep(",", $.p), "]"), 
@@ -247,6 +267,7 @@ module.exports = grammar({
       $.cap, 
       seq("{", sep1(", ", seq($.id, optional(seq("=", $.p)))), optional(seq(", ", "..")), "}"), 
       seq("<", $.p_val, ":", $.ty_val, ">"), 
+      seq("(", "mod", $.model, optional(seq(":", $.sig)), ")"),
 
       $.id, 
       $.blank, 
@@ -258,6 +279,11 @@ module.exports = grammar({
 
       prec.left(1, seq($.id, ".", $.p_val)), 
     ), 
+
+    model: $ => choice(
+      $.cap, 
+      seq(optional("tacit"), "open"),
+    ),
   }
 });
 

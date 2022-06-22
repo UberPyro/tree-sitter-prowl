@@ -142,6 +142,69 @@
     }
   },
   {
+    "type": "def",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "access",
+          "named": true
+        },
+        {
+          "type": "cap",
+          "named": true
+        },
+        {
+          "type": "data",
+          "named": true
+        },
+        {
+          "type": "e",
+          "named": true
+        },
+        {
+          "type": "id",
+          "named": true
+        },
+        {
+          "type": "mod",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "p_val",
+          "named": true
+        },
+        {
+          "type": "record",
+          "named": true
+        },
+        {
+          "type": "sig",
+          "named": true
+        },
+        {
+          "type": "stackvar",
+          "named": true
+        },
+        {
+          "type": "ty",
+          "named": true
+        },
+        {
+          "type": "ty_val",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "e",
     "named": true,
     "fields": {},
@@ -248,11 +311,15 @@
           "named": true
         },
         {
+          "type": "mod",
+          "named": true
+        },
+        {
           "type": "reg_paren",
           "named": true
         },
         {
-          "type": "s",
+          "type": "sig",
           "named": true
         },
         {
@@ -281,6 +348,67 @@
       "types": [
         {
           "type": "letop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mod",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "mod_val",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mod_val",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cap",
+          "named": true
+        },
+        {
+          "type": "def",
+          "named": true
+        },
+        {
+          "type": "id",
+          "named": true
+        },
+        {
+          "type": "mod",
+          "named": true
+        },
+        {
+          "type": "sig",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "model",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "cap",
           "named": true
         }
       ]
@@ -365,11 +493,19 @@
           "named": true
         },
         {
+          "type": "model",
+          "named": true
+        },
+        {
           "type": "p",
           "named": true
         },
         {
           "type": "p_val",
+          "named": true
+        },
+        {
+          "type": "sig",
           "named": true
         },
         {
@@ -403,55 +539,19 @@
     }
   },
   {
-    "type": "s",
+    "type": "sig",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "access",
-          "named": true
-        },
         {
           "type": "cap",
           "named": true
         },
         {
-          "type": "data",
-          "named": true
-        },
-        {
-          "type": "e",
-          "named": true
-        },
-        {
-          "type": "id",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "p_val",
-          "named": true
-        },
-        {
-          "type": "record",
-          "named": true
-        },
-        {
-          "type": "stackvar",
-          "named": true
-        },
-        {
-          "type": "ty",
-          "named": true
-        },
-        {
-          "type": "ty_val",
+          "type": "spec",
           "named": true
         }
       ]
@@ -466,19 +566,19 @@
       "required": false,
       "types": [
         {
-          "type": "s",
+          "type": "def",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "sp",
+    "type": "spec",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "cap",
@@ -498,6 +598,10 @@
         },
         {
           "type": "record",
+          "named": true
+        },
+        {
+          "type": "spec",
           "named": true
         },
         {
@@ -605,7 +709,7 @@
           "named": true
         },
         {
-          "type": "sp",
+          "type": "sig",
           "named": true
         },
         {
@@ -733,6 +837,10 @@
   },
   {
     "type": ":<",
+    "named": false
+  },
+  {
+    "type": ":>",
     "named": false
   },
   {
@@ -889,6 +997,10 @@
   },
   {
     "type": "mix",
+    "named": false
+  },
+  {
+    "type": "mod",
     "named": false
   },
   {

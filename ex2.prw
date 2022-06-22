@@ -1,2 +1,4 @@
-def x = %[5 => 6, 2 => 4, 1 => 9]
-def %[5 => c] y = c
+mod Hello = impl
+  def one = 1
+  def one-mod = (mod impl def z = 0 end : SomeSig)
+end
