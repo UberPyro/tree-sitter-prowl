@@ -860,6 +860,10 @@
     "named": true
   },
   {
+    "type": "hidden",
+    "named": false
+  },
+  {
     "type": "id",
     "named": true
   },
@@ -888,10 +892,6 @@
     "named": false
   },
   {
-    "type": "opaq",
-    "named": false
-  },
-  {
     "type": "open",
     "named": false
   },
@@ -900,12 +900,12 @@
     "named": true
   },
   {
-    "type": "priv",
-    "named": false
-  },
-  {
     "type": "reg_paren",
     "named": true
+  },
+  {
+    "type": "sealed",
+    "named": false
   },
   {
     "type": "sig",

@@ -265,50 +265,59 @@
       "members": [
         {
           "type": "STRING",
-          "value": "priv"
+          "value": "hidden"
         },
         {
           "type": "STRING",
-          "value": "opaq"
+          "value": "sealed"
         }
       ]
     },
     "parameter": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "["
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "["
+            },
+            {
+              "type": "SYMBOL",
+              "name": "stackvar"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "cap"
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "--"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "stackvar"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "cap"
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "]"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
-          "name": "stackvar"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "cap"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "--"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "stackvar"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "cap"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "]"
+          "name": "cap"
         }
       ]
     },

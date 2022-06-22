@@ -70,11 +70,12 @@ module.exports = grammar({
     ),
 
     access: $ => choice("hidden", "sealed"), 
-    parameter: $ => seq(
-      "[", $.stackvar, repeat($.cap), "--", 
-           $.stackvar, repeat($.cap), "]"
+    parameter: $ => choice(
+      seq("[", $.stackvar, repeat($.cap), "--", 
+               $.stackvar, repeat($.cap), "]"
+      ), 
+      $.cap
     ), 
-
     sp: $ => choice(
       seq("type", repeat($.parameter), $.id, optional(seq("=", $.ty_val))), 
       seq("spec", $.name, ":", $.ty), 
