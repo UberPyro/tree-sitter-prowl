@@ -1024,6 +1024,22 @@
           "name": "id"
         },
         {
+          "type": "SYMBOL",
+          "name": "id"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
           "type": "SEQ",
           "members": [
             {
