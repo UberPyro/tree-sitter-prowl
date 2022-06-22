@@ -1412,7 +1412,7 @@
         },
         {
           "type": "STRING",
-          "value": "::"
+          "value": ">:"
         },
         {
           "type": "STRING",
@@ -1655,7 +1655,7 @@
               },
               {
                 "type": "STRING",
-                "value": "::"
+                "value": ">:"
               },
               {
                 "type": "SYMBOL",
@@ -2738,7 +2738,7 @@
               },
               {
                 "type": "STRING",
-                "value": "::"
+                "value": ">:"
               },
               {
                 "type": "SYMBOL",

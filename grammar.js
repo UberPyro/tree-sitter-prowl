@@ -148,7 +148,7 @@ module.exports = grammar({
     let_body: $ => seq(repeat($.p_val), $.name, optional(seq(":", $.ty)), "=", $.e), 
 
     symbol2: $ => choice(
-      "**", "/", "*", "-", "+", "..", ":<", "<>", "::", "<=", "<", ">=", ">", 
+      "**", "/", "*", "-", "+", "..", ":<", "<>", ">:", "<=", "<", ">=", ">", 
       "/=", "==", $.symbol, ">=>", ">>=", "&&", "<<", ">>", "|", "~", 
     ), 
 
@@ -161,7 +161,7 @@ module.exports = grammar({
       prec.left( 12, seq($.e_term, "..", $.e_term)), 
       prec.right(11, seq($.e_term, ":<", $.e_term)), 
       prec.left( 10, seq($.e_term, "<>", $.e_term)), 
-      prec.left(  9, seq($.e_term, "::", $.e_term)), 
+      prec.left(  9, seq($.e_term, ">:", $.e_term)), 
       prec.left(  8, seq($.e_term, "<=", $.e_term)), 
       prec.left(  8, seq($.e_term, "<", $.e_term)), 
       prec.left(  8, seq($.e_term, ">=", $.e_term)), 
@@ -217,7 +217,7 @@ module.exports = grammar({
     ), 
 
     p: $ => choice(
-      prec.left(4, seq($.p, "::", $.p)), 
+      prec.left(4, seq($.p, ">:", $.p)), 
       prec.left(3, seq($.p, ":<", $.p)), 
       prec.left(2, seq($.p, "*", $.p)), 
       prec.left(1, seq($.p, "+", $.p)), 
