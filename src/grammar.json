@@ -1469,6 +1469,10 @@
         {
           "type": "STRING",
           "value": "~"
+        },
+        {
+          "type": "STRING",
+          "value": "$"
         }
       ]
     },
@@ -1950,6 +1954,27 @@
               {
                 "type": "STRING",
                 "value": "~"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "e_term"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 1,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "e_term"
+              },
+              {
+                "type": "STRING",
+                "value": "$"
               },
               {
                 "type": "SYMBOL",
