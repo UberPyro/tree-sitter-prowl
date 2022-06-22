@@ -69,7 +69,7 @@ module.exports = grammar({
       ), "*/"
     ),
 
-    access: $ => choice("priv", "opaq"), 
+    access: $ => choice("hidden", "sealed"), 
     parameter: $ => seq(
       "[", $.stackvar, repeat($.cap), "--", 
            $.stackvar, repeat($.cap), "]"
