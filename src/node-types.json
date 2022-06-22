@@ -516,6 +516,11 @@
     }
   },
   {
+    "type": "stackvar",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "string",
     "named": true,
     "fields": {},
@@ -908,10 +913,6 @@
   },
   {
     "type": "spec_op",
-    "named": true
-  },
-  {
-    "type": "stackvar",
     "named": true
   },
   {

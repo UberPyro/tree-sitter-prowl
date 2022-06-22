@@ -89,8 +89,17 @@
       "value": "[~!@#$%^&*\\-=+\\.?:<>|/\\\\]+"
     },
     "stackvar": {
-      "type": "PATTERN",
-      "value": "[a-z]\\*(-?[A-Za-z0-9_'])*"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[a-z]\\*(-?[A-Za-z0-9_'])*"
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        }
+      ]
     },
     "blank": {
       "type": "PATTERN",
