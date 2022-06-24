@@ -210,6 +210,7 @@ module.exports = grammar({
     e_val: $ => choice(
       "throw", 
       $.comb,
+      "_",
 
       $.int, 
       $.float, 

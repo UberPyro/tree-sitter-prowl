@@ -2379,6 +2379,10 @@
           "name": "comb"
         },
         {
+          "type": "STRING",
+          "value": "_"
+        },
+        {
           "type": "SYMBOL",
           "name": "int"
         },
