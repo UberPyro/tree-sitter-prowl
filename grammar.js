@@ -172,7 +172,7 @@ module.exports = grammar({
 
     symbol2: $ => choice(
       "**", "/", "*", "-", "+", "..", ":<", "<>", ">:", "<=", "<", ">=", ">", 
-      "/=", "==", $.symbol, ">=>", ">~>", ">>=", ">>~", "&&", "<<", ">>", "|", 
+      "!=", "==", $.symbol, ">=>", ">~>", ">>=", ">>~", "&&", "<<", ">>", "|", 
       "~", "$", 
     ), 
 
@@ -190,7 +190,7 @@ module.exports = grammar({
       prec.left(  8, seq($.e_term, "<", $.e_term)), 
       prec.left(  8, seq($.e_term, ">=", $.e_term)), 
       prec.left(  8, seq($.e_term, ">", $.e_term)), 
-      prec.left(  7, seq($.e_term, "/=", $.e_term)), 
+      prec.left(  7, seq($.e_term, "!=", $.e_term)), 
       prec.left(  7, seq($.e_term, "==", $.e_term)), 
       prec.left(  6, seq($.e_term, $.symbol, $.e_term)), 
       prec.left(  5, seq($.e_term, ">=>", $.e_term)), 
